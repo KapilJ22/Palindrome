@@ -32,30 +32,18 @@ public class MessageController {
 	private MessageRepository messageRepository;
 	private Message message;
 
-	@RequestMapping(value="/messages", method=RequestMethod.POST)
+	@RequestMapping(value="/messages/{messageText}", method=RequestMethod.POST)
 	@ApiOperation(value = "Creates a new Message", notes="The newly created message Id will be sent in the location response header",
 					response = Void.class)
 	@ApiResponses(value = {@ApiResponse(code=201, message="Message Created Successfully", response=Void.class),
 			@ApiResponse(code=500, message="Error creating Message", response=ErrorDetail.class) } )
-	public ResponseEntity<?> createMessage(@Valid @RequestBody Message message) {
-		System.out.println("Message: " + message);
-		System.out.println("Message: " + message.getMessage());
-
-		StringBuilder input1 = new StringBuilder();
-
-		// append a string into StringBuilder input1
-		input1.append(message.getMessage());
-
-		// reverse StringBuilder input1
-		input1 = input1.reverse();
-
-		System.out.println("input1 " + input1);
-		if(message.getMessage().equals(input1.toString())){
-			message.setisPalindrome(true);
-		}
-		else message.setisPalindrome(false);
+	public ResponseEntity<?> createMessage(@PathVariable String messageText ) {
+		Message message = new Message();
+		message.setMessageText(messageText);
+		message.setId(0);
+		message.setisPalindrome(isPalindrome(messageText));
 		message = messageRepository.save(message);
-		System.out.println("Message ID: " + message.getId());
+
 		// Set the location header for the newly created resource
 		HttpHeaders responseHeaders = new HttpHeaders();
 		URI newMessageUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(message.getId()).toUri();
@@ -64,11 +52,23 @@ public class MessageController {
 		return new ResponseEntity<>(message, responseHeaders, HttpStatus.CREATED);
 	}
 
+	private Boolean isPalindrome(String messageText){
+		StringBuilder reverseText = new StringBuilder();
+		reverseText.append(messageText);
+		reverseText = reverseText.reverse();
+
+		if(messageText.equals(reverseText.toString())){
+			return true;
+		}
+		else return false;
+
+	}
+
 	@RequestMapping(value="/messages/{messageId}", method=RequestMethod.GET)
 	@ApiOperation(value = "Retrieves given Message", response=Message.class)
 	@ApiResponses(value = {@ApiResponse(code=200, message="", response=Message.class),
 			@ApiResponse(code=404, message="Unable to find Message", response=ErrorDetail.class) } )
-	public ResponseEntity<?> getMessage(@PathVariable Long messageId) {
+	public ResponseEntity<?> getMessage(@PathVariable Integer messageId) {
 		verifyMessage(messageId);
 		Message p = messageRepository.findOne(messageId);
 		return new ResponseEntity<> (p, HttpStatus.OK);
@@ -85,7 +85,7 @@ public class MessageController {
 	@ApiOperation(value = "Updates given Message", response=Void.class)
 	@ApiResponses(value = {@ApiResponse(code=200, message="", response=Void.class),  
 			@ApiResponse(code=404, message="Unable to find Message", response=ErrorDetail.class) } )
-	public ResponseEntity<Void> updateMessage(@RequestBody Message message, @PathVariable Long messageId) {
+	public ResponseEntity<Void> updateMessage(@RequestBody Message message, @PathVariable Integer messageId) {
 		verifyMessage(messageId);
 		messageRepository.save(message);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -95,13 +95,13 @@ public class MessageController {
 	@ApiOperation(value = "Deletes given Message", response=Void.class)
 	@ApiResponses(value = {@ApiResponse(code=200, message="", response=Void.class),  
 			@ApiResponse(code=404, message="Unable to find Message", response=ErrorDetail.class) } )
-	public ResponseEntity<Void> deleteMessage(@PathVariable Long messageId) {
+	public ResponseEntity<Void> deleteMessage(@PathVariable Integer messageId) {
 		verifyMessage(messageId);
 		messageRepository.delete(messageId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	protected void verifyMessage(Long messageId) throws ResourceNotFoundException {
+	protected void verifyMessage(Integer messageId) throws ResourceNotFoundException {
 		Message message = messageRepository.findOne(messageId);
 		if(message == null) {
 			throw new ResourceNotFoundException("Message with id " + messageId + " not found");

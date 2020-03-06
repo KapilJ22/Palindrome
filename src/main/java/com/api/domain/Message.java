@@ -20,27 +20,22 @@ public class Message {
 	@Id
 	@GeneratedValue
 	@Column(name="MESSAGE_ID")
-	private Long id;
+	private Integer id;
 	
 	@Column(name="MESSAGE")
 	@NotEmpty
-	private String message;
+	private String messageText;
 
 
 	@Column(name="IS_PALINDROME")
 	//@NotNull
 	private Boolean isPalindrome;
+
 	
-//	@OneToMany(cascade=CascadeType.ALL)
-//	@JoinColumn(name="MESSAGE_ID")
-//	@OrderBy
-//	@Size(min=2, max = 6)
-//	private Set<Option> options;
-	
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Boolean getisPalindrome() {
@@ -50,11 +45,11 @@ public class Message {
 		this.isPalindrome = isPalindrome;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getMessageText() {
+		return messageText;
 	}
-	public void setMessage(String message) {
-		this.message = message;
+	public void setMessageText(String messageText) {
+		this.messageText = messageText;
 	}
 
 //	public Set<Option> getOptions() {
