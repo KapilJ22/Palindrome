@@ -59,16 +59,4 @@ public class Message {
         this.messageText = messageText;
     }
 
-//	public Set<Option> getOptions() {
-//		return options;
-//	}
-//	public void setOptions(Set<Option> options) {
-//		this.options = options;
-//	}
-//
-//	@Override
-//	public String toString() {
-//		return getId() + ", " + getMessage() + ", " + getOptions();
-//	}
-//
 }

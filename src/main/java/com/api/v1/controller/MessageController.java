@@ -36,9 +36,9 @@ public class MessageController {
     @ApiResponses(value = {@ApiResponse(code = 201, message = "Message Created Successfully", response = Void.class),
             @ApiResponse(code = 500, message = "Error creating Message", response = ErrorDetail.class)})
     public ResponseEntity<?> createMessage(@PathVariable String messageText) {
-
-
+        //Call the service layer to create a message
         message = messageService.createMessage(messageText);
+
         // Set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newMessageUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(message.getId()).toUri();
@@ -47,17 +47,6 @@ public class MessageController {
         return new ResponseEntity<>(message, responseHeaders, HttpStatus.CREATED);
     }
 
-//	private Boolean isPalindrome(String messageText){
-//		StringBuilder reverseText = new StringBuilder();
-//		reverseText.append(messageText);
-//		reverseText = reverseText.reverse();
-//
-//		if(messageText.equals(reverseText.toString())){
-//			return true;
-//		}
-//		else return false;
-//
-//	}
 
     @RequestMapping(value = "/messages/{messageId}", method = RequestMethod.GET)
     @ApiOperation(value = "Retrieves given Message", response = Message.class)
@@ -98,7 +87,8 @@ public class MessageController {
 
     protected void verifyMessage(Integer messageId) throws ResourceNotFoundException {
         Optional<Message> message = messageRepository.findById(messageId);
-        if (message == null) {
+        System.out.println("Message: " + message);
+        if (!message.isPresent()) {
             throw new ResourceNotFoundException("Message with id " + messageId + " not found");
         }
     }
