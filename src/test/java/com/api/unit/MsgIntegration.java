@@ -51,7 +51,7 @@ public class MsgIntegration {
     }
 
     @Test
-    public void createMessageAPI() throws Exception
+    public void givenA_PalindromeMessage_whenPost_thenStatus201_and_isPalindrome_true throws Exception
     {
         ResultActions perform = mockMvc.perform(post("/messages/{messageText}", "aba")
                 .contentType(MediaType.APPLICATION_JSON))
