@@ -1,10 +1,12 @@
 package com.api.controller;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import com.api.service.MessageService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,9 @@ public class MessageController {
 
 	@Inject
 	private MessageRepository messageRepository;
+	@Inject
+	MessageService messageService;
+
 	private Message message;
 
 	@RequestMapping(value="/messages/{messageText}", method=RequestMethod.POST)
@@ -38,31 +43,28 @@ public class MessageController {
 	@ApiResponses(value = {@ApiResponse(code=201, message="Message Created Successfully", response=Void.class),
 			@ApiResponse(code=500, message="Error creating Message", response=ErrorDetail.class) } )
 	public ResponseEntity<?> createMessage(@PathVariable String messageText ) {
-		Message message = new Message();
-		message.setMessageText(messageText);
-		message.setId(0);
-		message.setisPalindrome(isPalindrome(messageText));
-		message = messageRepository.save(message);
 
+
+		message = messageService.createMessage(messageText);
 		// Set the location header for the newly created resource
 		HttpHeaders responseHeaders = new HttpHeaders();
 		URI newMessageUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(message.getId()).toUri();
 		responseHeaders.setLocation(newMessageUri);
-		
+
 		return new ResponseEntity<>(message, responseHeaders, HttpStatus.CREATED);
 	}
 
-	private Boolean isPalindrome(String messageText){
-		StringBuilder reverseText = new StringBuilder();
-		reverseText.append(messageText);
-		reverseText = reverseText.reverse();
-
-		if(messageText.equals(reverseText.toString())){
-			return true;
-		}
-		else return false;
-
-	}
+//	private Boolean isPalindrome(String messageText){
+//		StringBuilder reverseText = new StringBuilder();
+//		reverseText.append(messageText);
+//		reverseText = reverseText.reverse();
+//
+//		if(messageText.equals(reverseText.toString())){
+//			return true;
+//		}
+//		else return false;
+//
+//	}
 
 	@RequestMapping(value="/messages/{messageId}", method=RequestMethod.GET)
 	@ApiOperation(value = "Retrieves given Message", response=Message.class)
@@ -70,7 +72,7 @@ public class MessageController {
 			@ApiResponse(code=404, message="Unable to find Message", response=ErrorDetail.class) } )
 	public ResponseEntity<?> getMessage(@PathVariable Integer messageId) {
 		verifyMessage(messageId);
-		Message p = messageRepository.findOne(messageId);
+		Optional<Message> p = messageRepository.findById(messageId);
 		return new ResponseEntity<> (p, HttpStatus.OK);
 	}
 	
@@ -97,12 +99,12 @@ public class MessageController {
 			@ApiResponse(code=404, message="Unable to find Message", response=ErrorDetail.class) } )
 	public ResponseEntity<Void> deleteMessage(@PathVariable Integer messageId) {
 		verifyMessage(messageId);
-		messageRepository.delete(messageId);
+		messageRepository.delete(message);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	protected void verifyMessage(Integer messageId) throws ResourceNotFoundException {
-		Message message = messageRepository.findOne(messageId);
+		Optional<Message> message = messageRepository.findById(messageId);
 		if(message == null) {
 			throw new ResourceNotFoundException("Message with id " + messageId + " not found");
 		}

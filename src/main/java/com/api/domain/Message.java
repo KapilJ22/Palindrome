@@ -1,18 +1,11 @@
 package com.api.domain;
 
-import java.util.Set;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Message {
@@ -31,7 +24,17 @@ public class Message {
 	//@NotNull
 	private Boolean isPalindrome;
 
-	
+	public Message(){
+
+	}
+
+	public Message(int id, String text, boolean b) {
+		this.id=id;
+		this.messageText=text;
+		this.isPalindrome=b;
+	}
+
+
 	public Integer getId() {
 		return id;
 	}
