@@ -51,7 +51,7 @@ public class MsgIntegration {
     }
 
     @Test
-    public void givenA_PalindromeMessage_whenPost_thenStatus201_and_isPalindrome_true throws Exception
+    public void givenA_PalindromeMessage_whenPost_thenStatus201_and_isPalindrome_true() throws Exception
     {
         ResultActions perform = mockMvc.perform(post("/messages/{messageText}", "aba")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -59,6 +59,17 @@ public class MsgIntegration {
                 .andExpect(content()
                         .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.isPalindrome").value(true));
+    }
+
+    @Test
+    public void givenA_NonPalindromeMessage_whenPost_thenStatus201_and_isPalindrome_false() throws Exception
+    {
+        ResultActions perform = mockMvc.perform(post("/messages/{messageText}", "abad")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(content()
+                        .contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.isPalindrome").value(false));
     }
 
 }
