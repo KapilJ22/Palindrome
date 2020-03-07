@@ -1,4 +1,4 @@
-package com.api.controller;
+package com.api.v1.controller;
 
 import java.net.URI;
 import java.util.Optional;
@@ -26,7 +26,8 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
 
-@RestController
+@RestController("MessageControllerV1")
+@RequestMapping("/v1/")
 @Api(value = "messages", description = "Message API")
 public class MessageController {
 

@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>quick-message-ch6-final</name>
+	<name>Palindrome-Message</name>
 	<description>Palindrome Message application built using Spring Boot</description>
 
 	<parent>
