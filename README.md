@@ -47,4 +47,4 @@ mvn test
 ## Deployment to AWS StalkBean
 1. Generate Jar file 
     ./mvn package -DskipTests 
-2. 
+2. Jump to https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/
