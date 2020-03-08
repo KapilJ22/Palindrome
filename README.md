@@ -5,6 +5,9 @@ The palindrome REST (like) APIs are developed using Java, Spring boot, Maven( fo
 ## Getting started
 
 ### Architecture
+The architecture is designed around the MVC paradigm. The below diagram illustrates how an incoming request is processed
+by the application and how the response is generated.
+
 ![alt text](https://github.com/KapilJ22/Palindrome/blob/master/Palindrome%20Message%20API.png)
 
 ### Prerequisites
@@ -49,3 +52,8 @@ mvn test
 1. Generate Jar file 
     ./mvn package -DskipTests 
 2. Jump to https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/
+
+
+## Limitations/ Enhancements
+1. Only one service class is created as of now. In future, more service classes can be created and  business logic from the application layer by moved to service layer.
+2. Currently, the application has integration test cases. In future, Unit test cases can be created for testing each component separately by mocking other components.
