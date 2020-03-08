@@ -20,11 +20,12 @@ git clone https://github.com/KapilJ22/Palindrome.git
 ## Docker build and run
 ### 1. Build
 ```
-docker build . -t 
+docker build . -t kapil/palindrome_msg  
 ```
 ### 2. Run
 ```
-docker run -d -it 
+docker run -p 8080:8080 kapil/palindrome_msg:latest
+
 ```
 This will run the server with the default port of 8080.
 
