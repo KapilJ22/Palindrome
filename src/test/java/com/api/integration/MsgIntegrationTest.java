@@ -40,7 +40,7 @@ public class MsgIntegrationTest {
     @Test
     public void givenA_PalindromeMessage_whenGet_thenStatus200_and_isPalindrome_true()
             throws Exception {
-        mockMvc.perform(get("/messages/{messageId}", 2)
+        mockMvc.perform(get("/v1/messages/{messageId}", 2)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content()
@@ -50,7 +50,7 @@ public class MsgIntegrationTest {
 
     @Test
     public void givenA_PalindromeMessage_whenPost_thenStatus201_and_isPalindrome_true() throws Exception {
-        ResultActions perform = mockMvc.perform(post("/messages/{messageText}", "aba")
+        ResultActions perform = mockMvc.perform(post("/v1/messages/{messageText}", "aba")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andExpect(content()
@@ -60,7 +60,7 @@ public class MsgIntegrationTest {
 
     @Test
     public void givenA_NonPalindromeMessage_whenPost_thenStatus201_and_isPalindrome_false() throws Exception {
-        ResultActions perform = mockMvc.perform(post("/messages/{messageText}", "abad")
+        ResultActions perform = mockMvc.perform(post("/v1/messages/{messageText}", "abad")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andExpect(content()
