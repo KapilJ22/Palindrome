@@ -20,11 +20,12 @@ git clone https://github.com/KapilJ22/Palindrome.git
 ## Docker build and run
 ### 1. Build
 ```
-docker build . -t 
+docker build . -t kapil/palindrome_msg  
 ```
 ### 2. Run
 ```
-docker run -d -it 
+docker run -p 8080:8080 kapil/palindrome_msg:latest
+
 ```
 This will run the server with the default port of 8080.
 
@@ -47,4 +48,4 @@ mvn test
 ## Deployment to AWS StalkBean
 1. Generate Jar file 
     ./mvn package -DskipTests 
-2. 
+2. Jump to https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/
