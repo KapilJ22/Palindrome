@@ -20,7 +20,7 @@ public class SwaggerConfig {
     private ApiInfo getApiInfo() {
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title("PalindromeMessage REST API")
-                .description("PalindromeMessage Api for creating and managing polls")
+                .description("PalindromeMessage Api for creating and managing messages")
                 .termsOfServiceUrl("http://example.com/terms-of-service")
                 .contact("info@example.com")
                 .license("MIT License")
