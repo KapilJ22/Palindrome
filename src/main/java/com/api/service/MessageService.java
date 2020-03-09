@@ -32,4 +32,9 @@ public class MessageService {
         return messageText.equals(reverseText.toString())? true : false;
 
     }
+
+    public Message saveMessage(Message message) {
+        message.setisPalindrome(isPalindrome(message.getMessageText()));
+        return messageRepository.save(message);
+    }
 }

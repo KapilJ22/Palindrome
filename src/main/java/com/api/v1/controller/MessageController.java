@@ -69,10 +69,15 @@ public class MessageController {
     @ApiOperation(value = "Updates given Message", response = Void.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "", response = Void.class),
             @ApiResponse(code = 404, message = "Unable to find Message", response = ErrorDetail.class)})
-    public ResponseEntity<Void> updateMessage(@RequestBody Message message, @PathVariable Integer messageId) {
-        verifyMessage(messageId);
-        messageRepository.save(message);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<?> updateMessage(@RequestBody Message message) {
+        verifyMessage(message.getId());
+        message = messageService.saveMessage(message);
+        // Set the location header for the newly created resource
+        HttpHeaders responseHeaders = new HttpHeaders();
+        URI newMessageUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(message.getId()).toUri();
+        responseHeaders.setLocation(newMessageUri);
+      //  return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(message, responseHeaders, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/messages/{messageId}", method = RequestMethod.DELETE)
