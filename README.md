@@ -19,7 +19,7 @@ by the application and how the response is generated.
 
 #### Important Points:
 
-- The POST needs to pass `"id": 0` and `"isPalindrome": false` with the messageText that needs to be checked for Palindrome.
+- The POST needs to pass `"id": 0` and `"isPalindrome": false` along with the `messageText` that needs to be checked for Palindrome. 
 For e.g. 
 {
   "id": 0,
@@ -27,7 +27,7 @@ For e.g.
   "isPalindrome": true
 }
    
-   A Response Body is returned with new unique `id` generated and `"isPalindrome": true`, if text is Palindrome, false otherwise.
+   A Response Body is returned with new unique `id` generated and `"isPalindrome": true`, if text is Palindrome, false otherwise. For e.g.
 {
   "id": 2,
   "messageText": "aba",
@@ -115,6 +115,6 @@ mvn test
 
 
 ## Limitations/ Enhancements
-1. Only one service class is created as of now. In future, more service classes can be created and  business logic from the application layer by moved to service layer.
-2. Currently, the application has integration test cases. In future, Unit test cases can be created for testing each component separately by mocking other components.
+1. Only one service class is created as of now. In future, more service classes can be created and  business logic from the application layer be moved to service layer.
+2. Currently, the application has integration test cases. In future, unit test cases can be created for testing each component separately, by mocking other components.
 3. Fixed defects like proper error message when empty messageText is passed.
