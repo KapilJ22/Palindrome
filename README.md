@@ -10,37 +10,42 @@ by the application and how the response is generated.
 ![alt text](https://github.com/KapilJ22/Palindrome/blob/master/Palindrome%20Message%20API.png)
 
 #### Model Schema for Message:
-
+```
 {
   "id": Integer,
   "messageText": String,
   "isPalindrome": Boolean
 }
-
+```
 #### Important Points:
 
 - The POST needs to pass `"id": 0` and `"isPalindrome": false` along with the `messageText` that needs to be checked for Palindrome. 
-For e.g. 
+For e.g.
+```
 {
   "id": 0,
   "messageText": "aba",
   "isPalindrome": true
 }
-   
+```   
    A Response Body is returned with new unique `id` generated and `"isPalindrome": true`, if text is Palindrome, false otherwise. For e.g.
+```
 {
   "id": 2,
   "messageText": "aba",
   "isPalindrome": true
 }
+```
 
 - The GET needs to pass `id` of the message in the argument as `GET /v1/messages/{messageId}`  
 An example of succesful GET response:
+```
 {
   "id": 1,
   "messageText": "abad",
   "isPalindrome": false
 }
+```
 
 ## Building local development environment
 ### Prerequisites
@@ -57,21 +62,19 @@ git clone https://github.com/KapilJ22/Palindrome.git
 ### 1. Build
 ```
 docker build -t kapil/palindrome-spring-boot-docker .
-
 ```
 
 ### 2. Run
 
 ```
  docker run -p 8080:8080 -t kapil/palindrome-spring-boot-docker
-
-
 ```
 This will run the server with the default port of 8080.
 
 ## Maven build and run
+```
 ./mvn spring-boot:run
-
+```
 ## API definition
 The full API definition is available at http://localhost:8080/swagger-ui/index.html#!
 or a PDF version is available at  https://github.com/KapilJ22/Palindrome/blob/master/Palindrome%20Message%20API%20specifications%202.pdf
