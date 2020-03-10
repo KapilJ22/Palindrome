@@ -62,6 +62,7 @@ docker build -t kapil/palindrome-spring-boot-docker .
 
 ### 2. Run
 
+```
  docker run -p 8080:8080 -t kapil/palindrome-spring-boot-docker
 
 
@@ -79,6 +80,7 @@ or a PDF version is available at  https://github.com/KapilJ22/Palindrome/blob/ma
 ## Testing
 This project comes with integration tests for POST and GET. Other API endpoints were tested with postman. 
 Initial seed data is loaded automatically at the build/run time. The seed data is as follows:
+
 ```
 [
   {
@@ -96,9 +98,11 @@ Initial seed data is loaded automatically at the build/run time. The seed data i
     "messageText": "aka",
     "isPalindrome": true
   }
-]```
+]
+```
 
 ### Running backend tests
+
 ```
 mvn test
 ```
