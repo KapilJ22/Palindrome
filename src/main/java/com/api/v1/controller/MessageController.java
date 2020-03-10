@@ -30,14 +30,14 @@ public class MessageController {
     private MessageRepository messageRepository;
     private Message message;
 
-    @RequestMapping(value = "/messages/{messageText}", method = RequestMethod.POST)
+    @RequestMapping(value = "/messages", method = RequestMethod.POST)
     @ApiOperation(value = "Creates a new Message", notes = "The newly created message Id will be sent in the location response header",
             response = Void.class)
     @ApiResponses(value = {@ApiResponse(code = 201, message = "Message Created Successfully", response = Void.class),
             @ApiResponse(code = 500, message = "Error creating Message", response = ErrorDetail.class)})
-    public ResponseEntity<?> createMessage(@PathVariable String messageText) {
+    public ResponseEntity<?> createMessage(@RequestBody Message message) {
         //Call the service layer to create a message
-        message = messageService.createMessage(messageText);
+        message = messageService.createMessage(message.getMessageText());
 
         // Set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
