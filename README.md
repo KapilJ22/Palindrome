@@ -17,20 +17,28 @@ by the application and how the response is generated.
   "isPalindrome": Boolean
 }
 
-#### Examples:
+#### Important Points:
+
+- The POST needs to pass `"id": 0` and `"isPalindrome": false` with the messageText that needs to be checked for Palindrome. 
 {
   "id": 0,
   "messageText": "aba",
   "isPalindrome": true
 }
-
-- The POST needs to pass `"id": 0` and `"isPalindrome": false` with the messageText that needs to be checked for Palindrome 
-   A Response Body with new `id` generated and `"isPalindrome": true` if text is Palindrome, false otherwise.
-
+   
+   A Response Body is returned with new unique `id` generated and `"isPalindrome": true`, if text is Palindrome, false otherwise.
 {
   "id": 2,
   "messageText": "aba",
   "isPalindrome": true
+}
+
+- The GET needs to pass `id` of the message in the argument as `GET /v1/messages/{messageId}`  
+An example of succesful GET response:
+{
+  "id": 1,
+  "messageText": "abad",
+  "isPalindrome": false
 }
 
 ## Building local development environment
