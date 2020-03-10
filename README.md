@@ -1,5 +1,5 @@
 # Palindrome REST API
-The palindrome REST (like) APIs are developed using Java, Spring boot, Maven( for dependency management), H2 embedded in memory DB.  
+The palindrome REST (like) API is developed using Java, Spring boot, Maven( for dependency management), H2 embedded in memory DB.  
 ---
 
 ## Getting started
@@ -19,7 +19,8 @@ by the application and how the response is generated.
 
 #### Important Points:
 
-- The POST needs to pass `"id": 0` and `"isPalindrome": false` with the messageText that needs to be checked for Palindrome. 
+- The POST needs to pass `"id": 0` and `"isPalindrome": false` with the messageText that needs to be checked for Palindrome.
+For e.g. 
 {
   "id": 0,
   "messageText": "aba",
