@@ -57,3 +57,4 @@ mvn test
 ## Limitations/ Enhancements
 1. Only one service class is created as of now. In future, more service classes can be created and  business logic from the application layer by moved to service layer.
 2. Currently, the application has integration test cases. In future, Unit test cases can be created for testing each component separately by mocking other components.
+3. Fixed defects like proper error message when empty messageText is passed.
