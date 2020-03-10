@@ -9,6 +9,31 @@ The architecture is designed around the MVC paradigm. The below diagram illustra
 by the application and how the response is generated.
 ![alt text](https://github.com/KapilJ22/Palindrome/blob/master/Palindrome%20Message%20API.png)
 
+#### Model Schema for Message:
+
+{
+  "id": Integer,
+  "messageText": String,
+  "isPalindrome": Boolean
+}
+
+#### Examples:
+{
+  "id": 0,
+  "messageText": "aba",
+  "isPalindrome": true
+}
+
+- The POST needs to pass `"id": 0` and `"isPalindrome": false` with the messageText that needs to be checked for Palindrome 
+   A Response Body with new `id` generated and `"isPalindrome": true` if text is Palindrome, false otherwise.
+
+{
+  "id": 2,
+  "messageText": "aba",
+  "isPalindrome": true
+}
+
+## Building local development environment
 ### Prerequisites
 At minimum you will need to have Java 1.7 and Maven installed. You will need docker as well if you choose to run this in a docker container.
 
