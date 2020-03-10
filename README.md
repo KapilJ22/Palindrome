@@ -70,6 +70,7 @@ This will run the server with the default port of 8080.
 
 ## API definition
 The full API definition is available at http://localhost:8080/swagger-ui/index.html#!
+or a PDF version is available at  https://github.com/KapilJ22/Palindrome/blob/master/Palindrome%20Message%20API%20specifications%202.pdf
 
 
 ## Testing
