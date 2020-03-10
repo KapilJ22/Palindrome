@@ -7,7 +7,6 @@ The palindrome REST (like) APIs are developed using Java, Spring boot, Maven( fo
 ### Architecture
 The architecture is designed around the MVC paradigm. The below diagram illustrates how an incoming request is processed
 by the application and how the response is generated.
-
 ![alt text](https://github.com/KapilJ22/Palindrome/blob/master/Palindrome%20Message%20API.png)
 
 ### Prerequisites
