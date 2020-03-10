@@ -12,19 +12,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import javax.inject.Inject;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
-
-//import org.springframework.boot
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,13 +26,11 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @WebAppConfiguration
 public class MsgIntegrationTest {
     ObjectMapper objectMapper = new ObjectMapper();
-    @Inject
-    private WebApplicationContext webApplicationContext;
-
-    private MockMvc mockMvc;
-
     @Autowired
     ObjectMapper mapper;
+    @Inject
+    private WebApplicationContext webApplicationContext;
+    private MockMvc mockMvc;
 
     @Before
     public void setup() {

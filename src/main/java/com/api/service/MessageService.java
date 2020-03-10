@@ -29,7 +29,7 @@ public class MessageService {
         StringBuilder reverseText = new StringBuilder();
         reverseText.append(messageText);
         reverseText = reverseText.reverse();
-        return messageText.equals(reverseText.toString())? true : false;
+        return messageText.equals(reverseText.toString()) ? true : false;
 
     }
 
