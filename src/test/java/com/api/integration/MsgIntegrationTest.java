@@ -40,7 +40,7 @@ public class MsgIntegrationTest {
     @Test
     public void givenA_PalindromeMessage_whenGet_thenStatus200_and_isPalindrome_true()
             throws Exception {
-        mockMvc.perform(get("/v1/messages/{messageId}", 2)
+        mockMvc.perform(get("/v1/messages/{messageId}", 102)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content()
