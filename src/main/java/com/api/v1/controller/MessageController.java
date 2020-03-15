@@ -80,12 +80,12 @@ public class MessageController {
         return new ResponseEntity<>(message, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/messages/{messageId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/messages", method = RequestMethod.DELETE)
     @ApiOperation(value = "Deletes given Message", response = Void.class)
     @ApiResponses(value = {@ApiResponse(code = 200, message = "", response = Void.class),
             @ApiResponse(code = 404, message = "Unable to find Message", response = ErrorDetail.class)})
-    public ResponseEntity<Void> deleteMessage(@PathVariable Integer messageId) {
-        verifyMessage(messageId);
+    public ResponseEntity<Void> deleteMessage(@RequestBody Message message) {
+        verifyMessage(message.getId());
         messageRepository.delete(message);
         return new ResponseEntity<>(HttpStatus.OK);
     }
