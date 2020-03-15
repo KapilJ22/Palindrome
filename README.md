@@ -80,7 +80,7 @@ This will run the server with the default port of 8080.
 
 ## Maven build and run
 ```
-./mvn spring-boot:run
+mvn spring-boot:run
 ```
 ## API definition
 The full API definition is available at http://localhost:8080/swagger-ui/index.html#!
