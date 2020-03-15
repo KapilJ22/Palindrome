@@ -59,12 +59,19 @@ git clone https://github.com/KapilJ22/Palindrome.git
 ## cd into the cloned directory
 
 ## Docker build and run
-### 1. Build
+
+### 1. Generate Jar files
+
+ ```
+    mvn package -DskipTests 
+ ```
+    
+### 2. Build
 ```
 docker build -t kapil/palindrome-spring-boot-docker .
 ```
 
-### 2. Run
+### 3. Run
 
 ```
  docker run -p 8080:8080 -t kapil/palindrome-spring-boot-docker
@@ -113,7 +120,9 @@ mvn test
 
 ## Deployment to AWS StalkBean
 1. Generate Jar file 
-    ./mvn package -DskipTests 
+    ```
+    mvn package -DskipTests 
+    ```
 2. Jump to https://aws.amazon.com/blogs/devops/deploying-a-spring-boot-application-on-aws-using-aws-elastic-beanstalk/
 
 
