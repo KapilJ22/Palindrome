@@ -1,5 +1,5 @@
 # Palindrome REST API
-The palindrome REST (like) API is developed using Java, Spring boot, Maven( for dependency management), H2 embedded in memory DB.  
+The palindrome REST (like) API is developed using Java, Spring boot, Maven( for dependency management), H2 embedded in memory DB. It performs a simple function of returning a palindrome of a string.  This repo can serve as a code pattern to develop complex APIs using Spring boot.
 ---
 
 ## Getting started
